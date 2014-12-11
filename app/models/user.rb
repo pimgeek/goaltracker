@@ -47,4 +47,7 @@ class User
   end
 
 
+  include Topic::UserMethods
+
+
 end

@@ -1,0 +1,28 @@
+
+
+
+
+  <div class="panel-body">
+
+
+      <ul class="list-group">
+
+
+          <li class="list-group-item">
+
+            <%= render 'topics/each_share', :g => @topic %>
+          </li>
+
+          
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              topics_path, :class => 'btn btn-default'  %>
+
+<% if @topic.owner?(current_user) %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_topic_path(@topic), :class => 'btn btn-default', method: :get %>
+<% end %>
+
+      </ul>
+
+
+  </div>

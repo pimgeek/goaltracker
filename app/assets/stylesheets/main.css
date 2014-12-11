@@ -1,0 +1,36 @@
+.list-group-item {
+  border : 0;
+}
+
+.time {
+  font-size: 12px;
+  color: grey;
+}
+
+#show-form {
+  margin: 20px 0px 20px 0px;
+  font-weight: bold;
+  color: #987890;
+}
+
+
+.hidden{
+   display:none;
+}
+
+.author {
+  color: grey;
+}
+
+.reply-tag {
+  color: #876567;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+.title-reply {
+  font-size: 14px;
+  color: green;
+}

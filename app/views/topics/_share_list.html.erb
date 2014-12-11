@@ -1,0 +1,13 @@
+      <ul class="list-group">
+
+        <%= paginate @topics %>
+
+          <% 
+            @topics.each do |g|
+
+          %>
+          <li class="list-group-item">
+            <%= render 'topics/each_share', :g => g %>
+          </li>
+          <% end %>
+      </ul>

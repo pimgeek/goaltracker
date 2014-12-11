@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   layout 'default' 
   include ApplicationHelper
 
+  before_filter :pre_load
+
+  def pre_load
+    parse_tags
+  end
+
 
   protected
 

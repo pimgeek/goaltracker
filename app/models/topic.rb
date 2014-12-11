@@ -3,20 +3,32 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  # field :talk_group_id,         type: Integer
-  field :order,                 type: Integer, default: 0
-  field :title,                 type: String
-  field :title_tag,             type: String
+  field :title1,             type: String
+  field :title2,             type: String
+  field :title3,             type: String
+  field :title4,             type: String
 
 
   
-  belongs_to :talk_group, :inverse_of => :parent_topic
+  belongs_to :user
 
-  validates :title_tag, :presence => true
+  validates :title1, :presence => true
 
 
   default_scope -> { order('id asc') }
-  scope :by_tag, ->(tag) { where(:title_tag => tag, :title.ne => '') }
+
+
+
+  def owner?(other_user)
+    user == other_user
+  end
+
+
+  module UserMethods
+    def self.included(base)
+      base.has_many :topics
+    end
+  end
 
 
 

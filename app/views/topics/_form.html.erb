@@ -1,0 +1,54 @@
+<%= form_for @topic, :html => { :class => "form-horizontal topic" } do |f| %>
+
+    <% if @topic.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @topic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+
+    <b><%= @titles[0] %></b>
+    <div class="controls">
+      <%= f.text_field :title1, :class => 'form-control' %>
+    </div>
+    <%= error_span(@topic[:title1]) %>
+  </div>
+  <div class="control-group">
+    <b><%= @titles[1] %></b>
+    <div class="controls">
+      <%= f.text_field :title2, :class => 'form-control' %>
+    </div>
+    <%= error_span(@topic[:title2]) %>
+  </div>
+  <div class="control-group">
+    <b><%= @titles[2] %></b>
+    <div class="controls">
+      <%= f.text_field :title3, :class => 'form-control' %>
+    </div>
+    <%= error_span(@topic[:title3]) %>
+  </div>
+  <div class="control-group">
+    <b><%= @titles[3] %></b>
+    <div class="controls">
+      <%= f.text_field :title4, :class => 'form-control' %>
+    </div>
+    <%= error_span(@topic[:title4]) %>
+  </div>
+  
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            topics_path, :class => 'btn btn-default' %>
+
+<% end %>

@@ -7,9 +7,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def show
-    parse_tags
     
-    @talk_groups = @user.talk_groups.page params[:page]
+    @topics = @user.topics.page params[:page]
+
+    render 'topics/index'
   end
 
 
