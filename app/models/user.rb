@@ -48,6 +48,7 @@ class User
 
 
   include Topic::UserMethods
+  # include Notice::UserMethods
 
 
 end
