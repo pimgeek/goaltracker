@@ -19,20 +19,26 @@
 
 
 
-
   <div class="control-group">
 
     <div class="controls">
       <%= f.text_area :content, :class => 'form-control', :placeholder => '输入您的需求', rows: 5, :required => true %>
+
+      <% if params[:action] == 'new' %>
 
       <p>
         <% @users.each do |u| %>
         <input type="checkbox" name="noticers[]" value="<%= u.id %>" /> <%= u.username %>
         <% end %>
       </p>
+
+      <% end %>
+
+
     </div>
     <%= error_span(@topic[:content]) %>
   </div>
+
 
 
 
