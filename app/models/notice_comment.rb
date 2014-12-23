@@ -7,9 +7,9 @@ class NoticeComment
 
   
   belongs_to :user
-  belongs_to :notice
+  belongs_to :topic
 
-  validates :user, :notice, :content, :presence => true
+  validates :user, :content, :topic, :presence => true
 
 
   default_scope -> { order('id asc') }

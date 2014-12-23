@@ -4,12 +4,9 @@
 
       <h2>需求列表</h2>
 
-      <% current_user.notices.each do |notice| %>
-        <p class="alert alert-info" role="alert">
-          <%= notice.topic.user.username %> 给您发来了一个需求, 
-          <a href="/topics/<%= notice.topic.id %>?notice_id=<%= notice.id %>">具体查看</a>
-        </p>
-      <% end %>
+      
+
+      <%= render 'topics/require_list' %>
 
       <%= render 'topics/share_list' %>
 

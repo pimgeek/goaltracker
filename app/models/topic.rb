@@ -7,11 +7,12 @@ class Topic
 
   
   belongs_to :user
+  has_many :notice_comments
 
   validates :content, :user, :presence => true
 
 
-  default_scope -> { order('id asc') }
+  default_scope -> { order('id desc') }
 
 
 

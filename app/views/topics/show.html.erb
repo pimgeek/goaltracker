@@ -22,13 +22,15 @@
       <p>
 
 
-<% if @notice %>
+<% if @notice || @topic.owner?(current_user) %>
 
         <ul class="list-group">
 
-          <% @notice.notice_comments.each do |comment|  %>
+          <% @topic.notice_comments.each do |comment|  %>
           <li class="list-group-item">
             <%= comment.content %>
+            <p><a href="/users/<%= comment.user.username %>"><%= comment.user.username %></a>
+                  发表于 <%= time_ago_in_words(comment.created_at) %>前</p>
           </li>
           <% end %>
 
@@ -48,7 +50,8 @@
 
       <%= f.hidden_field :user_id, :value => current_user.id %>
 
-      <%= f.hidden_field :notice_id, :value => @notice.id %>
+
+      <%= f.hidden_field :topic_id, :value => @topic.id %>
     </div>
     <%= error_span(@topic[:content]) %>
   </div>

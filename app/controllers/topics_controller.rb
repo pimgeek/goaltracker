@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 
 
   def show
-    @notice = Notice.where(id: params[:notice_id]).first
+    @notice = current_user.get_notice(@topic) if current_user
     @notice_comment = NoticeComment.new
   end
 
