@@ -1,35 +1,9 @@
                 
         <div class="row">
      
-                <h4>
-                  <a href="/topics/<%= g.id %>"><%= g.title1 %></a>
-                </h4>
 
               <P>
-                <ul>
-                  <li>
-              
-                      <a href="/topics/search?tag="><%= g.title2 %></a>      
-                    
-                  </li>
-
-                  <li>
-              
-                      <a href="/topics/search?tag="><%= g.title3 %></a>      
-                    
-                  </li>
-
-
-                  <li>
-              
-                      <a href="/topics/search?tag="><%= g.title4 %></a>      
-                    
-                  </li>
-                  
-
-
-                  <%#= render 'topics/parent_topic', :parent_topic => talk_group.parent_topic %>
-                </ul>
+                <a href="/topics/<%= g.id %>"><%= simple_format g.content %></a>
                 
               </p>
 

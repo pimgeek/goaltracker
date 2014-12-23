@@ -22,52 +22,17 @@
 
   <div class="control-group">
 
-    <b><%= @titles[0] %></b>
     <div class="controls">
-      <%= f.text_field :title1, :class => 'form-control', :required => true %>
+      <%= f.text_area :content, :class => 'form-control', :placeholder => '输入您的需求', rows: 5, :required => true %>
     </div>
-    <%= error_span(@topic[:title1]) %>
+    <%= error_span(@topic[:content]) %>
   </div>
 
 
-  <p id="show-form">
-    <a href="javascript: void(0);">更多选项</a>
-  </p>
-
-  <div  id="option-forms" style="display: none;">
-    
-    <div class="control-group">
-      <b><%= @titles[1] %></b>
-      <div class="controls">
-        <%= f.text_field :title2, :class => 'form-control' %>
-      </div>
-      <%= error_span(@topic[:title2]) %>
-    </div>
-
-    
 
 
-    <div class="control-group">
-      <b><%= @titles[2] %></b>
-      <div class="controls">
-        <%= f.text_field :title3, :class => 'form-control' %>
-      </div>
-      <%= error_span(@topic[:title3]) %>
-    </div>
-    <div class="control-group">
-      <b><%= @titles[3] %></b>
-      <div class="controls">
-        <%= f.text_field :title4, :class => 'form-control' %>
-      </div>
-      <%= error_span(@topic[:title4]) %>
-    </div>
-
-  </div>
-  
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+  <%= f.submit nil, :class => 'btn btn-primary', :value => '提交' %>
+  <%= link_to t('.cancel', :default => t("取消")),
             topics_path, :class => 'btn btn-default' %>
 
 <% end %>

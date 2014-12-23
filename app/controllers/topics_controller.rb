@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(
-      :user_id, :title1, :title2, :title3, :title4
+      :user_id, :content
     )
   end
 
