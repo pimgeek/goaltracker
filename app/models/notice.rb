@@ -1,4 +1,4 @@
-class Topic
+class Notice
 
   include Mongoid::Document
   include Mongoid::Timestamps

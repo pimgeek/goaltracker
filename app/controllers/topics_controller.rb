@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
     super
 
     @topic = Topic.find(params[:id]) if params[:id]
+    @users = User.get_noticers(current_user)
   end
 
   def topic_params
@@ -18,6 +19,7 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.page params[:page]
+
   end
 
   def new
@@ -25,9 +27,14 @@ class TopicsController < ApplicationController
   end
 
   def create
+    noticers = params[:noticers]
     @topic = current_user.topics.build(topic_params)
 
-    return redirect_to "/topics" if @topic.save
+    if @topic.save
+      noticers.each { |t| Notice.create(:user_id => t, :topic => @topic) }
+      
+      return redirect_to "/topics"
+    end
 
     return render 'new'
   end

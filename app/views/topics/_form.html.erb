@@ -24,6 +24,12 @@
 
     <div class="controls">
       <%= f.text_area :content, :class => 'form-control', :placeholder => '输入您的需求', rows: 5, :required => true %>
+
+      <p>
+        <% @users.each do |u| %>
+        <input type="checkbox" name="noticers[]" value="<%= u.id %>" /> <%= u.username %>
+        <% end %>
+      </p>
     </div>
     <%= error_span(@topic[:content]) %>
   </div>
