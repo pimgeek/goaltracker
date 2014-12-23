@@ -41,6 +41,8 @@ class TopicsController < ApplicationController
 
 
   def show
+    @notice = Notice.where(id: params[:notice_id]).first
+    @notice_comment = NoticeComment.new
   end
 
   def edit
