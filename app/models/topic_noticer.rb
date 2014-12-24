@@ -1,4 +1,4 @@
-class Notice
+class TopicNoticer
 
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -16,7 +16,7 @@ class Notice
 
   module UserMethods
     def self.included(base)
-      base.has_many :notices
+      base.has_many :notices, :class_name => 'TopicNoticer', :foreign_key => 'user_id'
 
       base.send :include, InstanceMethods
     end
@@ -24,12 +24,12 @@ class Notice
     module InstanceMethods
 
       def was_noticed?(topic)
-        Notice.where(user_id: self.id, topic_id: topic.id).exists?
+        TopicNoticer.where(user_id: self.id, topic_id: topic.id).exists?
       end
 
       def get_notice(topic)
         return nil unless was_noticed?(topic)
-        Notice.where(user_id: self.id, topic_id: topic.id).first
+        TopicNoticer.where(user_id: self.id, topic_id: topic.id).first
       end
     end
 
