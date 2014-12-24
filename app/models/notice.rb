@@ -37,8 +37,5 @@ class Notice
   end
 
 
-  include NoticeComment::NoticeMethods
-
-
 
 end

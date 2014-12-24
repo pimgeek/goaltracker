@@ -16,12 +16,6 @@ class NoticeComment
 
 
 
-  module NoticeMethods
-    def self.included(base)
-      base.has_many :notice_comments
-    end
-  end
-
   module UserMethods
     def self.included(base)
       base.has_many :notice_comments
