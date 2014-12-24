@@ -26,7 +26,7 @@
 
         <ul class="list-group">
 
-          <% @topic.notice_comments.each do |comment|  %>
+          <% @topic.comments.each do |comment|  %>
           <li class="list-group-item">
             <%= comment.content %>
             <p><a href="/users/<%= comment.user.username %>"><%= comment.user.username %></a>
@@ -41,7 +41,7 @@
 
 
 
-            <%= form_for @notice_comment, :html => { :class => "form-horizontal" } do |f| %>
+            <%= form_for @comment, :html => { :class => "form-horizontal" } do |f| %>
 
   <div class="control-group">
 

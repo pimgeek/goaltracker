@@ -1,16 +1,16 @@
-class NoticeCommentsController < ApplicationController
+class CommentsController < ApplicationController
 
   before_filter :authenticate_user!
 
   before_filter :pre_load
 
   def pre_load
-    @notice_comment = NoticeComment.find(params[:id]) if params[:id]
+    @comment = Comment.find(params[:id]) if params[:id]
 
   end
 
-  def notice_comment_params
-    params.require(:notice_comment).permit(
+  def comment_params
+    params.require(:comment).permit(
       :user_id, :content, :topic_id
     )
   end
@@ -18,7 +18,7 @@ class NoticeCommentsController < ApplicationController
 
 
   def create
-    @comment = NoticeComment.create(notice_comment_params)
+    @comment = Comment.create(notice_comment_params)
 
     topic_id = @comment.topic_id
 

@@ -49,6 +49,6 @@ class User
 
   include Topic::UserMethods
   include Notice::UserMethods
-  include NoticeComment::UserMethods
+  include Comment::UserMethods
 
 end

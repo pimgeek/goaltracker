@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
 
   def show
     @notice = current_user.get_notice(@topic) if current_user
-    @notice_comment = NoticeComment.new
+    @comment = Comment.new
   end
 
   def edit

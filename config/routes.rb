@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :topics
 
-  resources :notice_comments
+  resources :comments
 
 
 

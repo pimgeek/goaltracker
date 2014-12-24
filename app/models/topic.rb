@@ -7,7 +7,7 @@ class Topic
 
   
   belongs_to :user
-  has_many :notice_comments
+  has_many :comments
 
   validates :content, :user, :presence => true
 

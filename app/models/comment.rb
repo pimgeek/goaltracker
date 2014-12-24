@@ -1,4 +1,4 @@
-class NoticeComment
+class Comment
 
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -18,7 +18,7 @@ class NoticeComment
 
   module UserMethods
     def self.included(base)
-      base.has_many :notice_comments
+      base.has_many :comments
     end
   end
 
