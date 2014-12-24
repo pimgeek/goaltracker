@@ -18,7 +18,9 @@ class CommentsController < ApplicationController
 
 
   def create
-    @comment = Comment.create(notice_comment_params)
+    @comment = Comment.create(comment_params)
+
+    Notice.create(:topicable => @comment, :user_id => @comment.topic.user_id)
 
     topic_id = @comment.topic_id
 

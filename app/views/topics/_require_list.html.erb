@@ -2,8 +2,8 @@
     <% if current_user %>
       <% current_user.notices.each do |notice| %>
         <p class="alert alert-info" role="alert">
-          <%= notice.topic.user.username %> 给您发来了一个需求, 
-          <a href="/topics/<%= notice.topic.id %>">具体查看</a>
+          <%= notice.topicable.user.username %> 给您发来了一个需求, 
+          <a href="/topics/<%= notice.get_topicable_id %>">具体查看</a>
         </p>
       <% end %>
     <% end %>

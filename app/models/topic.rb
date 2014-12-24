@@ -41,4 +41,8 @@ class Topic
 
 
 
+  include Notice::TopicMethods
+
+
+
 end

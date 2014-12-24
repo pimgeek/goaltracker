@@ -31,7 +31,13 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
-      noticers.each { |t| TopicNoticer.create(:user_id => t, :topic => @topic) } if noticers
+
+      if noticers
+        noticers.each do |t| 
+          TopicNoticer.create(:user_id => t, :topic => @topic)
+          Notice.create(:user_id => t, :topicable => @topic)
+        end
+      end
       
       return redirect_to "/topics"
     end

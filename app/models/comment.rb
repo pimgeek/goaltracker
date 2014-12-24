@@ -24,4 +24,8 @@ class Comment
 
 
 
+  include Notice::CommentMethods
+
+
+
 end
