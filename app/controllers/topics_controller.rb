@@ -68,6 +68,10 @@ class TopicsController < ApplicationController
     if current_user
       @was_noticed = current_user.was_noticed?(@topic)
       current_user.remove_notice(@topic)
+
+      @topic.comments.each do |comment|
+        current_user.remove_notice(comment)
+      end
     end
     @comment = Comment.new
   end
