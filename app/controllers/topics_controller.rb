@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
 
             notice_list = []
             user.notices.each do |notice|
-              notice_list << "<li><a href='/topics/#{notice.get_topicable_id}' style='color: red;'>#{notice.user.username} 给你发了一个消息，请查看</a></li>"
+              notice_list << "<li><a href='/topics/#{notice.get_topicable_id}' style='color: red;'>#{@topic.user.username} 给你发了一个消息，请查看</a></li>"
             end
 
             client.publish("/topics/#{user.username}", 
