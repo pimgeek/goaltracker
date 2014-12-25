@@ -82,7 +82,7 @@
                     <% current_user.notices.each do |notice| %>
                     <li>
                       <a href="/topics/<%= notice.get_topicable_id %>" style='color: red;'>
-                      <%= notice.user.username %> 给你发了一条消息, 
+                      <%= notice.from_user.username %> 给你发了一条消息, 
                       请查看
                       </a>
                     </li>

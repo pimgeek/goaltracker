@@ -21,7 +21,10 @@ class CommentsController < ApplicationController
     @comment = Comment.create(comment_params)
 
     if @comment.save
-      Notice.create(:topicable => @comment, :user_id => @comment.topic.user_id)
+      notice = Notice.create(
+        :topicable => @comment, 
+        :user_id => @comment.topic.user_id,
+        :from_user_id => @comment.user_id)
 
       topic_id = @comment.topic_id
 
@@ -31,7 +34,7 @@ class CommentsController < ApplicationController
         user = @comment.topic.user
 
         notice_list = []
-        notice_list << "<li><a href='/topics/#{topic_id}' style='color: red;'>#{@comment.user.username} 给你发了一个消息，请查看</a></li>"
+        notice_list << "<li><a href='/topics/#{topic_id}' style='color: red;'>#{notice.from_user.username} 给你发了一个消息，请查看</a></li>"
 
         client.publish("/topics/#{user.username}", 
           'notice_count' => "(<span>" + user.notices.count.to_s + "</span>)",

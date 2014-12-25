@@ -37,16 +37,22 @@ class TopicsController < ApplicationController
       if noticers
         noticers.each do |t| 
           TopicNoticer.create(:user_id => t, :topic => @topic)
-          Notice.create(:user_id => t, :topicable => @topic)
+          notice = Notice.create(
+            :user_id => t, 
+            :from_user_id => @topic.user_id,
+            :topicable => @topic)
+
+
+          user = User.find(t)
+
+
 
           EM.run {
             client = Faye::Client.new('http://localhost:3000/faye')
 
-            user = User.find(t)
-
             notice_list = []
             user.notices.each do |notice|
-              notice_list << "<li><a href='/topics/#{notice.get_topicable_id}' style='color: red;'>#{@topic.user.username} 给你发了一个消息，请查看</a></li>"
+              notice_list << "<li><a href='/topics/#{notice.get_topicable_id}' style='color: red;'>#{notice.from_user.username} 给你发了一个消息，请查看</a></li>"
             end
 
             client.publish("/topics/#{user.username}", 

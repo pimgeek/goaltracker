@@ -3,13 +3,13 @@ class Notice
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  
+  belongs_to :from_user, :class_name => 'User', :foreign_key => 'from_user_id'
   belongs_to :user
   belongs_to :topicable, :polymorphic => true
 
 
 
-  validates :topicable, :user, :presence => true
+  validates :topicable, :from_user, :user, :presence => true
 
 
   default_scope -> { order('id desc') }
