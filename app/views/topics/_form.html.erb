@@ -26,7 +26,7 @@
 
       <% if params[:action] == 'new' %>
 
-      <p>
+      <p id="c-b">
         <% @users.each do |u| %>
         <input type="checkbox" name="noticers[]" value="<%= u.id %>" /> <%= u.username %>
         <% end %>

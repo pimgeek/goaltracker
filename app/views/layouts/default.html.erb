@@ -12,6 +12,12 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
 
+    <% if current_user %>
+      <script type="text/javascript">
+        var current_username = "<%= current_user.username %>"
+      </script>
+    <% end %>
+
     <%= stylesheet_link_tag "application", :media => "all" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
@@ -35,6 +41,10 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
+
+
+
   </head>
   <body>
 
@@ -55,10 +65,31 @@
 
           <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
-              <li>
-                  <a href="/users/<%= current_user.username %>" title="">
-                      <%= current_user.username %>
-                  </a>
+              <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#"><%= current_user.username %>
+                      
+                  <span id="notice-count" style="color: red;">
+                    <% if current_user.notices.count > 0 %>
+                      (<span><%= current_user.notices.count %></span>)
+                    <% end %>
+                  </span>
+
+                  <b class="caret"></b>
+                </a>
+
+                <ul class="dropdown-menu" id='notice-list'>
+                  <% if current_user.notices.count > 0 %>
+                    <% current_user.notices.each do |notice| %>
+                    <li>
+                      <a href="/topics/<%= notice.get_topicable_id %>" style='color: red;'>
+                      <%= notice.user.username %> 给你发了一条消息, 
+                      请查看
+                      </a>
+                    </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+
               </li>
               <li>
                   <%= link_to "注销", destroy_user_session_path, :method => :delete %>

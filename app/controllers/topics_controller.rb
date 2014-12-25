@@ -20,6 +20,8 @@ class TopicsController < ApplicationController
   def index
     @topics = Topic.page params[:page]
 
+    
+
   end
 
   def new
@@ -36,9 +38,25 @@ class TopicsController < ApplicationController
         noticers.each do |t| 
           TopicNoticer.create(:user_id => t, :topic => @topic)
           Notice.create(:user_id => t, :topicable => @topic)
+
+          EM.run {
+            client = Faye::Client.new('http://localhost:3000/faye')
+
+            user = User.find(t)
+
+            notice_list = []
+            user.notices.each do |notice|
+              notice_list << "<li><a href='/topics/#{notice.get_topicable_id}' style='color: red;'>#{notice.user.username} 给你发了一个消息，请查看</a></li>"
+            end
+
+            client.publish("/topics/#{user.username}", 
+              'notice_count' => "(<span>" + user.notices.count.to_s + "</span>)",
+              'notice_list' => notice_list
+            )
+          }
         end
       end
-      
+
       return redirect_to "/topics"
     end
 
@@ -47,7 +65,10 @@ class TopicsController < ApplicationController
 
 
   def show
-    @notice = current_user.get_notice(@topic) if current_user
+    if current_user
+      @was_noticed = current_user.was_noticed?(@topic)
+      current_user.remove_notice(@topic)
+    end
     @comment = Comment.new
   end
 

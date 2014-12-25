@@ -29,6 +29,13 @@ module Goaltracker
 
     config.time_zone = 'Beijing'
     config.i18n.default_locale = 'zh-CN'
+
+
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+      map '/topics/*' => RealtimeNoticesController
+      map default: :block
+    end
     
   end
 end

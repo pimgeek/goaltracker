@@ -30,9 +30,16 @@ class Notice
     def self.included(base)
       base.has_many :notices
 
-
+      base.send(:include, InstanceMethods)
       base.send(:extend, ClassMethods)
 
+    end
+
+    module InstanceMethods
+      def remove_notice(topicable)
+        return unless Notice.where(user_id: self.id, topicable: topicable).exists?
+        Notice.where(user_id: self.id, topicable: topicable).first.destroy
+      end
     end
 
     module ClassMethods

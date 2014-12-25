@@ -24,6 +24,11 @@ gem "twitter-bootstrap-rails"
 gem 'kaminari'
 gem 'devise'
 
+gem 'faye-rails'
+# gem 'faye-websocket'
+gem 'thin'
+
+
 # 公网部署需要的gem begin
 gem "unicorn"
 gem 'mina',
