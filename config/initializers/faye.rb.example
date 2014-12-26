@@ -1,0 +1,3 @@
+class FAYE
+  URL = "http://localhost:3000/faye"
+end

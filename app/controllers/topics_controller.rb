@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
 
 
           EM.run {
-            client = Faye::Client.new('http://localhost:3000/faye')
+            client = Faye::Client.new(FAYE::URL)
 
             notice_list = []
             user.notices.each do |notice|

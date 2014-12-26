@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
       topic_id = @comment.topic_id
 
       EM.run {
-        client = Faye::Client.new('http://localhost:3000/faye')
+        client = Faye::Client.new(FAYE::URL)
 
         user = @comment.topic.user
 

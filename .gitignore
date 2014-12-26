@@ -43,3 +43,4 @@ config/survey_templates/*
 config/share_tags.yaml
 
 config/mongoid.yml
+config/initializers/faye.rb
